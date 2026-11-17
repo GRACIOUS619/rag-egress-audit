@@ -2,8 +2,11 @@
 
 **Finding ID:** RAG-2026-001
 **Severity:** HIGH
+**Auditor:** Gracious
+**Component:** RAG Assistant - Output Sanitization Pipeline
 **Status:** Remediated
 **Regression Test:** `tests/test_rag_egress_regression.py`
+`
 
 ## 1. Executive Summary
 The output filter used a blocklist regex approach to prevent markdown images and HTML tags from reaching the frontend. Blocklist filtering is insufficient. An attacker can craft evasion payloads that bypass specific regex patterns, triggering an outbound network request (data exfiltration). We demonstrated the bypass with 5 evasion classes, then remediated by replacing the blocklist with an allowlist sanitizer + DOMPurify + CSP. 
